@@ -1,6 +1,6 @@
 ### About App
 
-This app is an AI image redesign app that ai generating with original image.
+This app is an AI Video generating app from original video.
 
 ### Configuring
 
