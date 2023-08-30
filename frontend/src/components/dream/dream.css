@@ -1,0 +1,142 @@
+.gpt3__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.gpt3__header .generate {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.gpt3__header .generate span{
+  color: #2563eb;
+}
+
+.gpt3__header .generate button {
+    width: 30%;
+    min-height: 50px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    background: transparent;
+    border: 2px solid #14c2a3;
+    padding: 0 1rem;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.gpt3__header h1 {
+  color:#fff;
+  font-weight: 400;
+  font-size: 3.75rem;
+}
+
+.gpt3__header-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: space-around;
+}
+
+.gpt3__header-content .original {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45%;
+}
+
+.gpt3__header-content .generated {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45%;
+  position: relative;
+}
+
+.gpt3__header-content h2 {
+  color:#fff;
+  font-size: 16px;
+}
+
+.gpt3__header-content img {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 5%;
+}
+
+.gpt3__header-content .Uploaded {
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid hsla(0, 0%, 100%, 0.2);
+  width: 100%;
+  height: 100%;
+}
+
+.upload-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: dashed;
+}
+
+.upload-container p {
+  color:#2563eb;
+}
+
+.desc {
+  margin-top: 10px;
+  border-radius: 5px;
+  color: #b9b9bf;
+  font-size: 20px;
+  height: 150px;
+  line-height: 1.6;
+}
+
+textarea {
+  background: transparent;
+  border: 1px solid hsla(0, 0%, 100%, 0.2);
+  border-radius: 0;
+  box-shadow: none;
+  color: #565660;
+  font-family: IBM Plex Mono, monospace;
+  font-size: 17px;
+  height: 64px;
+  line-height: 28px;
+  outline: 0;
+  padding: 13px 15px 13px 27px;
+  width: 100%;
+  resize: none;
+}
+
+.gpt3__header-content .generated .spinner-wrapper {
+  height: 50px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 50px;
+}
+
+.gpt3__header-content .result1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  position: relative;
+}
