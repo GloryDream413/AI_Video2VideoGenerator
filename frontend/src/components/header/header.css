@@ -23,29 +23,3 @@
     width: 200x;
     height: 50px;
 }
-
-.gpt3__navbar-sign {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.gpt3__navbar-sign button {
-    flex: 1;
-    width: 100%;
-    min-height: 50px;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    background: transparent;
-    border: 2px solid #14c2a3;
-    padding: 0 1rem;
-    color: #fff;
-    cursor: pointer;
-    outline: none;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}

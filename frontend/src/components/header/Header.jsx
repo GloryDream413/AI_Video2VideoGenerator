@@ -10,9 +10,6 @@ const Header = () => {
           <img src={logo} alt="logo" />
         </div>
       </div>
-      <div className="gpt3__navbar-sign">
-        <button type="button" >Log In</button>
-      </div>
     </div>
   )
 }

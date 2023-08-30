@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import axios from 'axios'
 import ClipLoader from "react-spinners/ClipLoader";
 import image_mask from '../../assets/mask_image.png'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const baseUrl = "http://65.108.142.188:7777/";
 
