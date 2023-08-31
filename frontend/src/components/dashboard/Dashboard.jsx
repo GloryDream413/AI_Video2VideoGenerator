@@ -1,7 +1,5 @@
 import React from 'react';
 import './dashboard.css';
-import aiorigin from '../../assets/aiorigin.png'
-import aigenerated from '../../assets/aigenerated.png'
 import { Link } from 'react-router-dom';
 
 export const Dashboard = () => {
@@ -16,11 +14,9 @@ export const Dashboard = () => {
       <div className="gpt3__header-content">
         <div className="original">
           <h2>Original Video</h2>
-          <img src={aiorigin} alt="ai" />
         </div>
         <div className="generated">
           <h2>Generated Video</h2>
-          <img src={aigenerated} alt="ai" />
         </div>
       </div>
     </div>
