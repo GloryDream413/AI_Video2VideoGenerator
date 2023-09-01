@@ -14,7 +14,7 @@ async function getPredictionStatus (id) {
     {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Token 51cb9f81de883a011305cf4da2346c7c99545d31`
+        Authorization: `Token r8_5hdsTcr9XS7R8MraiV33ohfHZrFUOVF35l4HR`
       }
     }
   )
@@ -22,18 +22,17 @@ async function getPredictionStatus (id) {
   return prediction
 }
 
-async function createPrediction (image_original, prompt, image_mask) {
+async function createPrediction (infile, frame_rate, horizontal_resolution) {
   const response = await axios.post(
     'https://api.replicate.com/v1/predictions',
     {
       version:
-        '5deb8e4d829cba7939dde1640cc4e4e0d4ba460bd1645895133406f4922a20f8',
-      input: { image : image_original, prompt: prompt, mask_image : image_mask,
-      num_outputs:1 }
+        '11095c67166f44781a9274969e75bae32ef7896bc17cb5d95732aa63e7d1b86e',
+      input: { infile : infile, frame_rate: frame_rate, horizontal_resolution: horizontal_resolution }
     },
     {
       headers: {
-        Authorization: `Token 51cb9f81de883a011305cf4da2346c7c99545d31`,
+        Authorization: `Token r8_5hdsTcr9XS7R8MraiV33ohfHZrFUOVF35l4HR`,
         'Content-Type': 'application/json'
       }
     }
@@ -43,58 +42,12 @@ async function createPrediction (image_original, prompt, image_mask) {
   return prediction
 }
 
-async function createMask (image_original) {
-  const response = await axios.post(
-    'https://api.replicate.com/v1/predictions',
-    {
-      version:
-        '14fbb04535964b3d0c7fad03bb4ed272130f15b956cbedb7b2f20b5b8a2dbaa0',
-      input: { image : image_original, min_mask_region_area : 10 }
-    },
-    {
-      headers: {
-        Authorization: `Token 51cb9f81de883a011305cf4da2346c7c99545d31`,
-        'Content-Type': 'application/json'
-      }
-    }
-  )
-  const prediction = response.data;
-  return prediction
-}
-
-app.post('/getMaskimage', async (req, res) => {
-  let image_original = req.body.image_original
-  const prediction = await createMask(image_original)
-  
-  
-  let response = null
-  let nCount = 0
-  const sleep = ms => new Promise(r => setTimeout(r, ms))
-  while (prediction.status !== 'succeeded' && prediction.status !== 'failed') {
-    await sleep(1000)
-    nCount++
-    if (nCount >= 60) {
-      break
-    }
-    response = await getPredictionStatus(prediction.id)
-    if (response.err || response.output) {
-      break
-    }
-  }
-
-  if (response.output) {
-    return res.status(200).send({ response: response })
-  } else {
-    return res.status(201).send({ response: 'fail' })
-  }
-})
-
 app.post('/getImage', async (req, res) => {
-  let image_original = req.body.image_original
-  let prompt = req.body.prompt
-  let image_mask = req.body.image_mask
+  let infile = req.body.infile
+  let frame_rate = req.body.frame_rate
+  let horizontal_resolution = req.body.horizontal_resolution
 
-  const prediction = await createPrediction(image_original, prompt, image_mask)
+  const prediction = await createPrediction(infile, frame_rate, horizontal_resolution)
   let response = null
   let nCount = 0
   const sleep = ms => new Promise(r => setTimeout(r, ms))
@@ -102,7 +55,7 @@ app.post('/getImage', async (req, res) => {
   while (prediction.status !== 'succeeded' && prediction.status !== 'failed') {
     await sleep(1000)
     nCount++
-    if (nCount >= 60) {
+    if (nCount >= 600) {
       break
     }
     response = await getPredictionStatus(prediction.id)

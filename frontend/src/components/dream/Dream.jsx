@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './dream.css';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios'
@@ -8,22 +8,24 @@ const baseUrl = "http://65.21.162.227:7777/";
 
 export const Dream = () => {
   const [ videoUrl, SetVideoURL ] = useState('');
-  useEffect(() => {
-    
-  }, []);
-
+  const [ videoURI, SetVideoURI ] = useState('');
+  const [ output, SetOutput ] = useState('');
   const onGenerate = async () => {
-    const response = await axios.post(
-      baseUrl + 'getImage',
-      {
-        source : videoUrl
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    )
+    // const response = await axios.post(
+    //   baseUrl + 'getImage',
+    //   {
+    //     infile : videoURI,
+    //     frame_rate : 30,
+    //     horizontal_resolution : 480
+    //   },
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   }
+    // )
+    // SetOutput(response.data.response.output);
+    // window.location.href = response.data.response.output;
     document.getElementById('myModal').style.display = 'block';
   }
 
@@ -32,10 +34,17 @@ export const Dream = () => {
   }
   
   const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles[0]);
     const file = acceptedFiles[0];
     const videoUrl = URL.createObjectURL(file);
     SetVideoURL(videoUrl);
+    
+    const reader = new FileReader();
+    reader.onload = function (loadEvent) {
+      const fileData = loadEvent.target.result;
+      const dataURI = 'data:' + file.type + ';base64,' + btoa(fileData);
+      SetVideoURI(dataURI);
+    };
+    reader.readAsBinaryString(file);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -43,9 +52,9 @@ export const Dream = () => {
  
   return (
     <div>
-      <div id="myModal" class="modal">
-          <div class="modal-content">
-              <span class="close" id="closeModalBtn" onClick={closeModal}>&times;</span>
+      <div id="myModal" className="modal">
+          <div className="modal-content">
+              <span className="close" id="closeModalBtn" onClick={closeModal}>&times;</span>
               <video width="100%" height="100%" controls >
                 <source src={videoUrl} type="video/mp4"/>
               </video>
