@@ -1,15 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header, Footer, Dashboard, Dream } from './components'
-import { useState, createContext } from 'react'
 import './App.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export const UserContext = createContext(null)
 const App = () => {
-  const [nftRoute, setNftRoute] = useState('')
   return (
-    <UserContext.Provider value={{ nftRoute, setNftRoute }}>
+    <div>
       <div>
           <div className="gradient__bg">
             <Header />
@@ -23,7 +20,7 @@ const App = () => {
           <Footer/>
       </div>
       <ToastContainer autoClose={3000} draggableDirection='x' />
-    </UserContext.Provider>
+    </div>
   );
 }
 export default App

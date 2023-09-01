@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 const baseUrl = "http://65.21.162.227:7777/";
 
 export const Dream = () => {
+  const [ videoUrl, SetVideoURL ] = useState('');
   useEffect(() => {
     
   }, []);
@@ -19,6 +20,7 @@ export const Dream = () => {
     console.log(acceptedFiles[0]);
     const file = acceptedFiles[0];
     const videoUrl = URL.createObjectURL(file);
+    SetVideoURL(videoUrl);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -44,6 +46,14 @@ export const Dream = () => {
         </div>
         <div className="generated">
           <h2>Uploaded Video</h2>
+          {(videoUrl === '') &&
+            <div className='Uploaded'></div>
+          }
+          {(videoUrl !== '') &&
+            <video width="100%" height="100%" controls >
+              <source src={videoUrl} type="video/mp4"/>
+            </video>
+          }
           <div className="spinner-wrapper">
             {(bLoadingFlag === true) &&
               < ClipLoader
