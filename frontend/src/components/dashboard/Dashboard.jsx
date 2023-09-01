@@ -1,5 +1,7 @@
 import React from 'react';
 import './dashboard.css';
+import aiorigin from '../../assets/input.mp4';
+import aigenerated from '../../assets/output.mp4';
 import { Link } from 'react-router-dom';
 
 export const Dashboard = () => {
@@ -14,9 +16,15 @@ export const Dashboard = () => {
       <div className="gpt3__header-content">
         <div className="original">
           <h2>Original Video</h2>
+          <video width="100%" height="100%" controls >
+            <source src={aiorigin} type="video/mp4"/>
+          </video>
         </div>
         <div className="generated">
           <h2>Generated Video</h2>
+          <video width="100%" height="100%" controls >
+            <source src={aigenerated} type="video/mp4"/>
+          </video>
         </div>
       </div>
     </div>
