@@ -12,11 +12,6 @@ export const Dream = () => {
     
   }, []);
 
-  const modal = document.getElementById('myModal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-
-  closeModalBtn.addEventListener('click', closeModal);
-
   const onGenerate = async () => {
     const response = await axios.post(
       baseUrl + 'getImage',
@@ -29,11 +24,11 @@ export const Dream = () => {
         }
       }
     )
-    modal.style.display = 'block';
+    document.getElementById('myModal').style.display = 'block';
   }
 
   function closeModal() {
-    modal.style.display = 'none';
+    document.getElementById('myModal').style.display = 'none';
   }
   
   const onDrop = useCallback((acceptedFiles) => {
@@ -50,7 +45,7 @@ export const Dream = () => {
     <div>
       <div id="myModal" class="modal">
           <div class="modal-content">
-              <span class="close" id="closeModalBtn">&times;</span>
+              <span class="close" id="closeModalBtn" onClick={closeModal}>&times;</span>
               <video width="100%" height="100%" controls >
                 <source src={videoUrl} type="video/mp4"/>
               </video>
