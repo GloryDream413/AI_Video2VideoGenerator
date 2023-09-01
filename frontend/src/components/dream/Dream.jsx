@@ -55,9 +55,11 @@ export const Dream = () => {
       <div id="myModal" className="modal">
           <div className="modal-content">
               <span className="close" id="closeModalBtn" onClick={closeModal}>&times;</span>
-              <video width="100%" height="100%" controls >
-                <source src={videoUrl} type="video/mp4"/>
-              </video>
+              {(output !== '') &&
+                <video width="100%" height="100%" controls >
+                  <source src={output} type="video/mp4"/>
+                </video>
+              }
           </div>
       </div>
       <div className="gpt3__header section__padding" id="home">
