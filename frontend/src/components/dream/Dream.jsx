@@ -12,8 +12,17 @@ export const Dream = () => {
     
   }, []);
 
-  const onGenerate = () => {
+  const modal = document.getElementById('myModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
 
+  closeModalBtn.addEventListener('click', closeModal);
+
+  const onGenerate = () => {
+    modal.style.display = 'block';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
   }
   
   const onDrop = useCallback((acceptedFiles) => {
@@ -27,44 +36,54 @@ export const Dream = () => {
   const [bLoadingFlag, setLoadingFlag] = useState(false)
  
   return (
-    <div className="gpt3__header section__padding" id="home">
-      <div className='generate'>
-        <h1><b>Generating dream Video <span>using AI</span> for everyone.</b></h1>
+    <div>
+      <div id="myModal" class="modal">
+          <div class="modal-content">
+              <span class="close" id="closeModalBtn">&times;</span>
+              <video width="100%" height="100%" controls >
+                <source src={videoUrl} type="video/mp4"/>
+              </video>
+          </div>
       </div>
-      <div className='generate'>
-        <button type="button" onClick={onGenerate}>Generate your dream Video</button>
-      </div>
-      <div className="gpt3__header-content">
-        <div className="original">
-          <h2>Upload Video (*.mp4)</h2>
-          <div className="upload-container">
-            <div {...getRootProps()} className={`box-container ${isDragActive ? 'active' : ''}`}>
-              <input {...getInputProps()} />
-              <p>{isDragActive ? 'Drop the file here' : 'Drag and drop file here'}</p>
+      <div className="gpt3__header section__padding" id="home">
+        <div className='generate'>
+          <h1><b>Generating dream Video <span>using AI</span> for everyone.</b></h1>
+        </div>
+        <div className='generate'>
+          <button type="button" onClick={onGenerate}>Generate your dream Video</button>
+        </div>
+        <div className="gpt3__header-content">
+          <div className="original">
+            <h2>Upload Video (*.mp4)</h2>
+            <div className="upload-container">
+              <div {...getRootProps()} className={`box-container ${isDragActive ? 'active' : ''}`}>
+                <input {...getInputProps()} />
+                <p>{isDragActive ? 'Drop the file here' : 'Drag and drop file here'}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="generated">
-          <h2>Uploaded Video</h2>
-          {(videoUrl === '') &&
-            <div className='Uploaded'></div>
-          }
-          {(videoUrl !== '') &&
-            <video width="100%" height="100%" controls >
-              <source src={videoUrl} type="video/mp4"/>
-            </video>
-          }
-          <div className="spinner-wrapper">
-            {(bLoadingFlag === true) &&
-              < ClipLoader
-                color='#ffffff'
-                loading={true}
-                cssOverride={true}
-                size={50}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
+          <div className="generated">
+            <h2>Uploaded Video</h2>
+            {(videoUrl === '') &&
+              <div className='Uploaded'></div>
             }
+            {(videoUrl !== '') &&
+              <video width="100%" height="100%" controls >
+                <source src={videoUrl} type="video/mp4"/>
+              </video>
+            }
+            <div className="spinner-wrapper">
+              {(bLoadingFlag === true) &&
+                < ClipLoader
+                  color='#ffffff'
+                  loading={true}
+                  cssOverride={true}
+                  size={50}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              }
+            </div>
           </div>
         </div>
       </div>
