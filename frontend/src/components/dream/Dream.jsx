@@ -17,7 +17,18 @@ export const Dream = () => {
 
   closeModalBtn.addEventListener('click', closeModal);
 
-  const onGenerate = () => {
+  const onGenerate = async () => {
+    const response = await axios.post(
+      baseUrl + 'getImage',
+      {
+        source : videoUrl
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
     modal.style.display = 'block';
   }
 
