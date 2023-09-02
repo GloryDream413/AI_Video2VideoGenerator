@@ -11,21 +11,20 @@ export const Dream = () => {
   const [ videoURI, SetVideoURI ] = useState('');
   const [ output, SetOutput ] = useState('');
   const onGenerate = async () => {
-    // const response = await axios.post(
-    //   baseUrl + 'getImage',
-    //   {
-    //     infile : videoURI,
-    //     frame_rate : 30,
-    //     horizontal_resolution : 480
-    //   },
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     }
-    //   }
-    // )
-    // SetOutput(response.data.response.output);
-    // window.location.href = response.data.response.output;
+    const response = await axios.post(
+      baseUrl + 'getImage',
+      {
+        infile : videoURI,
+        frame_rate : 30,
+        horizontal_resolution : 480
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    SetOutput(response.data.response.output);
     document.getElementById('myModal').style.display = 'block';
   }
 
